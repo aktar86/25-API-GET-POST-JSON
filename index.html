@@ -8,6 +8,7 @@
 <body>
     <h1>JSON</h1>
     <h2>JavaScript Object Notation</h2>
+    <h3>Here is the 10 popular City name you can see</h3>
     <ul id="ul-container"></ul>
     <script>
         fetch('https://jsonplaceholder.typicode.com/users')
@@ -15,31 +16,38 @@
         .then(json => displayUser(json))
 
         function displayUser(users){
-            const userNames = users.map(user => user.username);
-            const ul = document.getElementById("ul-container");
+            // console.log(users)
+            const userName = users.map(user => user.username);
+            // console.log('user name:', userName)
+            const userEmail = users.map(x => x.email)
+            // console.log(userEmail)
+            const userAddress = users.map(x => x.address);
+            // console.log(userAddress)
+            const userCity = userAddress.map( userCity => userCity.city)
+            // console.log(userCity)
+            const ul = document.getElementById('ul-container')
 
-            for(let i = 0; i < userNames.length; i++){
-                const username = userNames[i];
-                const li = document.createElement("li");
-                li.innerText = username;
+            userCity.forEach(myCity)
+
+            function myCity(city){
+                const li = document.createElement('li');
+                li.innerText = city;
                 ul.appendChild(li)
             }
+
+            // userCity.forEach(city => { 
+            //     const li = document.createElement('li');
+            //     li.innerText = city;
+            //     ul.appendChild(li);
+            // });
+
+            // for(let i = 0; i < userCity.length; i++){
+            //     const city = userCity[i];
+            //     const li = document.createElement('li');
+            //     li.innerText = city;
+            //     ul.appendChild(li);
+            // }
         }
-
-        // fetch('https://jsonplaceholder.typicode.com/users')
-        //     .then(response => response.json())
-        //     .then(json => displayUser(json))
-
-        // function displayUser(users) {
-        // const userNames = users.map(user => user.username); // Now it's an array
-        // const ul = document.getElementById("ul-container");
-
-        // userNames.forEach(username => {
-        //         const li = document.createElement("li");
-        //         li.innerText = username;
-        //         ul.appendChild(li);
-        //     });
-        // }
     </script>
 </body>
 </html>
